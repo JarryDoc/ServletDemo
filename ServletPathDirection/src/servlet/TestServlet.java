@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class TestServlet
  */
-@WebServlet(urlPatterns = { "/servlet/TestServlet" }, initParams = { @WebInitParam(name = "TestServlet", value = "") })
+@WebServlet(urlPatterns = { "/servlet/TestServlet" })
 public class TestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -60,8 +60,8 @@ public class TestServlet extends HttpServlet {
 		//response.sendRedirect(request.getContextPath()+"/Test.jsp");
 		
 		//服务器内部跳转，这里的/表示项目的跟目录
-		//request.getRequestDispatcher("/Tset.jap").forward(request, response);
-		request.getRequestDispatcher("../Tset.jap").forward(request, response);
+		//request.getRequestDispatcher("/Test.jsp").forward(request, response);
+		request.getRequestDispatcher("../Test.jsp").forward(request, response);
 	}
 
 }

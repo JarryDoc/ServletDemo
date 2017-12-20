@@ -9,19 +9,38 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.jasper.tagplugins.jstl.core.Out;
-
 /**
- * Servlet implementation class HelloServlet
+ * Servlet implementation class GetInitParameterServlet
  */
-@WebServlet(urlPatterns = { "/servlet/HelloServlet" })
-public class HelloServlet extends HttpServlet {
+@WebServlet(urlPatterns = { "/servlet/GetInitParameterServlet" }, initParams = {
+		@WebInitParam(name = "username", value = "admin"), @WebInitParam(name = "password", value = "123456") })
+public class GetInitParameterServlet extends HttpServlet {
+
+	private String username;
+	private String password;
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public HelloServlet() {
+	public GetInitParameterServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -30,7 +49,9 @@ public class HelloServlet extends HttpServlet {
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
+		super.init(config);//一定要调用此方法
+		this.setUsername(this.getInitParameter("username"));
+		this.setPassword(this.getInitParameter("password"));
 	}
 
 	/**
@@ -56,8 +77,7 @@ public class HelloServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
-		response.getWriter().println("<h1>你好，我是HelloServlet!</h1>");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().println("<h2>"+this.getUsername()+"</h2>");
 	}
 
 }
