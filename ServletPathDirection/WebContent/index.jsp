@@ -20,5 +20,7 @@
 	<!-- 使用绝对路径访问HelloServlet,可以使用path变量 path变量表示项目的根目录 -->
 	<a href = "<%=path %>/servlet/HelloServlet">访问HelloServlet!</a><br>
 	<hr>
+	
+	<a href = "servlet/TestServlet">访问TestServlet,跳转到Test.jsp</a>
 </body>
 </html>
